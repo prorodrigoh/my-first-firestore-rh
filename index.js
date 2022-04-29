@@ -16,6 +16,8 @@ admin.initializeApp({
 
 //connect to the firestore project
 const db = admin.firestore();   
+// instead of using db.collection('restaurants') everywhere, add it to a variable and use the variable
+const restaurants = db.collection('restaurants')
 
 const restaurant = {
     name: 'Mister 01',
@@ -25,7 +27,7 @@ const restaurant = {
     phone: '(786) 677-2903',
 }
 
-db.collection('restaurants').add(restaurant)
+restaurants.add(restaurant)
     // doc.id is a random string auto generated
     .then(doc => console.log('Created restaurant', doc.id))
     .catch(err => console.error(err))
@@ -39,7 +41,7 @@ const restaurant2 = {
 
 async function addRestaurant (data) {
     try {
-        const doc = await db.collection('restaurants').add(data)
+        const doc = await restaurants.add(data)
         console.log('Created restaurant', doc.id)
     } catch(err) {
         console.error(err)
@@ -47,8 +49,6 @@ async function addRestaurant (data) {
 }
 addRestaurant(restaurant2)
 
-    // instead of using db.collection('restaurants') everywhere, add it to a variable and use the variable
-    // const restaurants = db.collection('restaurants')
 
 const restaurant3 = {
     name: 'Addiction Kitchen',
