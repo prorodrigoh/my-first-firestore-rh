@@ -1,8 +1,15 @@
-//import admin from 'firebase-admin'
 
-// connect to firebase suite
-const admin = require("firebase-admin");
-const creds = require('./credentials.json');
+
+// // connect to firebase suite via ES5 - NO change on package.json
+// const admin = require("firebase-admin");
+// const creds = require('./credentials.json');
+// admin.initializeApp({
+//   credential: admin.credential.cert(creds)
+// });
+
+// connect to firebase suite via ES6 - use import instead of require and CHANGE package.json to add "type": "module"
+import admin from 'firebase-admin'
+import creds from './credentials.json'
 admin.initializeApp({
   credential: admin.credential.cert(creds)
 });
