@@ -9,45 +9,45 @@
 
 // connect to firebase suite via ES6 - use import instead of require and CHANGE package.json to add "type": "module"
 import admin from 'firebase-admin'
-import creds from './credentials.js'
-admin.initializeApp({
-  credential: admin.credential.cert(creds)
+import creds from './credentials.js' // get our key that we got from firestore database to allow a connection to it
+
+admin.initializeApp({ //connect to the firebase suite
+  credential: admin.credential.cert(creds) // creates a certificate from our credentials
 });
 
-//connect to the firestore project
-const db = admin.firestore();   
-// instead of using db.collection('restaurants') everywhere, add it to a variable and use the variable
-const restaurants = db.collection('restaurants')
+const db = admin.firestore(); // connect to the firestore database and create a variable to use
 
-// const restaurant = {
-//     name: 'Mister 01',
-//     address: '555 N Federal Hwy Suite #5, Boca Raton, FL 33432',
-//     cuisine: 'Pizza',
-//     rating: 4.9,
-//     phone: '(786) 677-2903',
-// }
+const restaurants = db.collection('restaurants') // instead of using db.collection('restaurants') everywhere, add it to a variable and use the variable
 
-// restaurants.add(restaurant)
-//     // doc.id is a random string auto generated
-//     .then(doc => console.log('Created restaurant', doc.id))
-//     .catch(err => console.error(err))
+const restaurant = {
+    name: 'Mister 01',
+    address: '555 N Federal Hwy Suite #5, Boca Raton, FL 33432',
+    cuisine: 'Pizza',
+    rating: 4.9,
+    phone: '(786) 677-2903',
+}
 
-// const restaurant2 = {
-//     name: 'Bolay',
-//     address: '7060 W Palmetto Park Rd, Boca Raton, FL 33433',
-//     cuisine: 'American',
-//     rating: 4.6,
-// }
+restaurants.add(restaurant)
+    // doc.id is a random string auto generated
+    .then(doc => console.log('Created restaurant', doc.id))
+    .catch(err => console.error(err))
 
-// async function addRestaurant (data) {
-//     try {
-//         const doc = await restaurants.add(data)
-//         console.log('Created restaurant', doc.id)
-//     } catch(err) {
-//         console.error(err)
-//     }
-// }
-// addRestaurant(restaurant2)
+const restaurant2 = {
+    name: 'Bolay',
+    address: '7060 W Palmetto Park Rd, Boca Raton, FL 33433',
+    cuisine: 'American',
+    rating: 4.6,
+}
+
+async function addRestaurant (data) {
+    try {
+        const doc = await restaurants.add(data)
+        console.log('Created restaurant', doc.id)
+    } catch(err) {
+        console.error(err)
+    }
+}
+addRestaurant(restaurant2)
 
 
 // const restaurant3 = {
