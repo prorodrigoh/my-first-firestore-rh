@@ -9,7 +9,7 @@
 
 // connect to firebase suite via ES6 - use import instead of require and CHANGE package.json to add "type": "module"
 import admin from 'firebase-admin'
-import creds from './credentials'
+import creds from './credentials.js'
 admin.initializeApp({
   credential: admin.credential.cert(creds)
 });
